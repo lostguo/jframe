@@ -26,7 +26,7 @@ public class GameRoot : SingletonMono<GameRoot>
 
         for (int i = 0; i < managers.Length; i++)
         {
-            managers[i].Init();
+            managers[i].Init(); 
         }
     }
 }
