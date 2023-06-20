@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -140,7 +141,7 @@ public class PoolManager : ManagerBase<PoolManager>
         }
         else
         {
-            objectPoolDic.Add(name, new ObjectPoolData());
+            objectPoolDic.Add(name, new ObjectPoolData(obj));
         }
     }
 
@@ -153,14 +154,66 @@ public class PoolManager : ManagerBase<PoolManager>
     #endregion
 
 
-    public void Clear(bool wantClearCObject=true)
+
+    #region 删除
+
+    /// <summary>
+    /// 删除全部
+    /// </summary>
+    /// <param name="clearGameObject">是否删除游戏物体</param>
+    /// <param name="wantClearCObject">是否删除普通C#对象</param>
+    public void Clear(bool clearGameObject=true, bool wantClearCObject=true)
     {
-        gameObjectPoolDic.Clear();
+        if (clearGameObject)
+        {
+            for (int i = 0; i < poolRootObj.transform.childCount; i++)
+            {
+                Destroy(poolRootObj.transform.GetChild(i).gameObject);
+            }
+            gameObjectPoolDic.Clear();
+        }
 
         if (wantClearCObject)
         {
             objectPoolDic.Clear();
         }
     }
+
+
+    public void ClearAllGameObject()
+    {
+        Clear(true, false);
+    }
+
+    public void ClearGameObject(string prefabName)
+    {
+        GameObject go = poolRootObj.transform.Find(prefabName).gameObject;
+        if (go != null)
+        {
+            Destroy(go);
+            gameObjectPoolDic.Remove(prefabName);
+        }
+    }
+
+    public void ClearGameObject(GameObject prefab)
+    {
+        ClearGameObject(prefab.name);
+    }
+
+    public void ClearAllObject()
+    {
+        Clear(false, true);
+    }
+
+    public void ClearObject<T>()
+    {
+        objectPoolDic.Remove(typeof(T).FullName);
+    }
+
+    public void ClearObject(Type type)
+    {
+        objectPoolDic.Remove(type.FullName);
+    }
+
+    #endregion
 }
- 

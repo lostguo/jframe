@@ -10,6 +10,10 @@ public class ObjectPoolData
     // 对象容器
     public Queue<object> poolQueue = new Queue<object>();
 
+    public ObjectPoolData(object obj)
+    {
+        PushObj(obj);
+    }
 
     /// <summary>
     /// 将对象放入对象池
