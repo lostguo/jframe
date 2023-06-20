@@ -168,7 +168,7 @@ public class PoolManager : ManagerBase<PoolManager>
         {
             for (int i = 0; i < poolRootObj.transform.childCount; i++)
             {
-                Destroy(poolRootObj.transform.GetChild(i).gameObject);
+                Destroy(poolRootObj.transform.GetChild(0).gameObject);
             }
             gameObjectPoolDic.Clear();
         }
