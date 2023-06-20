@@ -187,10 +187,10 @@ public class PoolManager : ManagerBase<PoolManager>
 
     public void ClearGameObject(string prefabName)
     {
-        GameObject go = poolRootObj.transform.Find(prefabName).gameObject;
+        Transform go = poolRootObj.transform.Find(prefabName);
         if (go != null)
         {
-            Destroy(go);
+            Destroy(go.gameObject);
             gameObjectPoolDic.Remove(prefabName);
         }
     }
