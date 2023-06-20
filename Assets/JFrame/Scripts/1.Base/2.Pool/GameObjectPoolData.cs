@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// GameObject对象池数据
+/// </summary>
 public class GameObjectPoolData 
 {
     // 对象池中 父节点，例：所有子弹都挂在子弹父节点下
     public GameObject fatherObj;
-    // 对象列表
+    // 对象容器
     public Queue<GameObject> poolQueue;
 
 
@@ -23,7 +26,7 @@ public class GameObjectPoolData
 
 
     /// <summary>
-    /// 放入
+    /// 将对象放入对象池
     /// </summary>
     /// <param name="obj"></param>
     public void PushObj(GameObject obj)
@@ -38,19 +41,24 @@ public class GameObjectPoolData
 
 
     /// <summary>
-    /// 获取对象
+    /// 从对象池获取对象
     /// </summary>
     /// <returns></returns>
-    public GameObject GetObj()
+    public GameObject GetObj(Transform parent = null)
     {
         GameObject obj = poolQueue.Dequeue();
 
         // 显示对象
         obj.SetActive(true);
-        // 父物体置空
-        obj.transform.parent = null;
-        // 回归默认场景
-        SceneManager.MoveGameObjectToScene(obj, SceneManager.GetActiveScene());
+        // 设置父物体
+        obj.transform.SetParent(parent);
+
+        if (parent == null)
+        {
+            // 回归默认场景
+            SceneManager.MoveGameObjectToScene(obj, SceneManager.GetActiveScene());
+        }
+
         return obj;
     }
 
