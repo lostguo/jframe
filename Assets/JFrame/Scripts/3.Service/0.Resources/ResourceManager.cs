@@ -12,8 +12,7 @@ public class ResourceManager : ManagerBase<ResourceManager>
     {
         base.Init();
 
-        // TODO: 替换成真实配置
-        wantCacheDic = new Dictionary<Type, bool>();
+        wantCacheDic = GameRoot.Instance.GameSetting.cacheDic;
     }
 
     /// <summary>
