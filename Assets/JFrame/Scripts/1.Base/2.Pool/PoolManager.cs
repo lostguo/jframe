@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class PoolManager : ManagerBase<PoolManager>
@@ -99,6 +100,25 @@ public class PoolManager : ManagerBase<PoolManager>
     {
         string name = prefab.name;
         return gameObjectPoolDic.ContainsKey(name) && gameObjectPoolDic[name].poolQueue.Count > 0;
+    }
+
+    /// <summary>
+    /// 检查缓存 如果成功就加载游戏物体 不成功返回null
+    /// </summary>
+    /// <returns></returns>
+    public GameObject CheckCacheAndLoadGameObject(string path,Transform parent)
+    {
+        //通过路径获取最终预制体名称 "UI/LoginWindow"
+        string[] pathSplit = path.Split("/");
+        string prefabName = pathSplit[pathSplit.Length - 1];
+        if (gameObjectPoolDic.ContainsKey(prefabName) && gameObjectPoolDic[prefabName].poolQueue.Count > 0)
+        {
+            return gameObjectPoolDic[prefabName].GetObj(parent);
+        }
+        else
+        {
+            return null;
+        }
     }
     #endregion
 

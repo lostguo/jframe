@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class GameRoot : SingletonMono<GameRoot>
 {
+    /// <summary>
+    /// 框架设置
+    /// </summary>
+    [SerializeField]
+    private GameSetting gameSetting;
+
+    public GameSetting GameSetting { get { return gameSetting; } }
 
     protected override void Awake()
     {

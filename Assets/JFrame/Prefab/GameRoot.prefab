@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7546086892335827634}
   - component: {fileID: 1444179269414799982}
   - component: {fileID: 6432271223344218652}
-  - component: {fileID: 398511585}
+  - component: {fileID: 5351592154266236526}
   m_Layer: 0
   m_Name: GameRoot
   m_TagString: Untagged
@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d2eaa188e3454ed69039d69c64c4561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameSetting: {fileID: 11400000, guid: 952f5f0319ee644cea15b521c4cb7577, type: 2}
 --- !u!114 &6432271223344218652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,7 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolRootObj: {fileID: 7057473629585220558}
---- !u!114 &398511585
+--- !u!114 &5351592154266236526
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -69,10 +70,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 357093773582077238}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c490722dc9f04219a95cfe51ad8b9a7, type: 3}
+  m_Script: {fileID: 11500000, guid: 49c396272fe334b0b9d546d1fb5927ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cube: {fileID: 885833787205798911, guid: 8da4cb7fc1b3749e9a989fd3e25fb8e0, type: 3}
+  configSetting: {fileID: 11400000, guid: 4c6d968d039044329a05999fd4a72e94, type: 2}
 --- !u!1 &7057473629585220558
 GameObject:
   m_ObjectHideFlags: 0
